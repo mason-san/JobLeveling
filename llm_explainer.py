@@ -1,36 +1,46 @@
 def generate_explanation_prompt(job_desc, resume_text):
     return f"""
-You are an AI resume expert.
+        Compare this resume to the job description below.
 
-Compare the following candidate resume to the job description. Briefly explain:
-- What skills and experience match
-- What skills are missing
-- A 1-line summary of suitability
-- A final label: Strong / Moderate / Weak match
+        Give a short, clean summary like this:
 
-Job Description:
-{job_desc}
+        Match: [3 key matching skills]
+        Missing: [2 missing critical skills]
+        Summary: [One sentence. Max 20 words.]
+        Assessment: Strong / Moderate / Weak
 
-Resume:
-{resume_text}
+        Job Description:
+        {job_desc}
 
-Return in this format:
-Match: [...]
-Missing: [...]
-Summary: [...]
-Final Assessment: [...]
-"""
+        Resume:
+        {resume_text}
+    """
+
+
 
 import requests
 
-def get_explanation_from_ollama(prompt, model="deepseek"):
-    response = requests.post(
-        "http://localhost:11434/api/generate",
-        json={
-            "model":model,
-            "prompt":prompt,
-            "stream":False
-        }
-    )
-    return response.json()["response"]
+def get_explanation_from_ollama(prompt, model="deepseek-r1:1.5b"):
+    try:
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {
+                    "num_predict":150,
+                    "temperature":0.3
+                }
+            }
+        )
 
+        # Check status and dump full response
+        print("Status code:", response.status_code)
+        print("Raw response:", response.text)
+
+        data = response.json()
+        raw = data.get("response", "⚠️ No valid response.")
+        return raw[:700] + "..." if len(raw) > 700 else raw
+    except Exception as e:
+        return f"❌ Error talking to Ollama: {e}"
