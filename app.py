@@ -2,6 +2,7 @@ import streamlit as st
 from resume_parser import extract_text_from_pdf
 from scoring_engine import score_resume_vs_jd, feedback, load_model
 from sentence_transformers import SentenceTransformer
+from llm_explainer import generate_explanation_prompt, get_explanation_from_ollama
 import pandas as pd
 
 st.title("Job :blue[Leveling] :sunglasses:")
@@ -14,6 +15,7 @@ with st.form("Job_detail_form"):
     submitted=st.form_submit_button("Submit")
 
 model = load_model()
+st.session_state.results = {}
 
 if submitted:
     if job_desc and uploaded_files:
@@ -32,14 +34,16 @@ if submitted:
                 "Resume":resume_text,
                 "Score":score,
                 "Label" : label, 
-                "File" : uploaded_file
+                "File" : uploaded_file,
+                "Text": resume_text
             })
 
         #Build dataframe here
         st.session_state.df = pd.DataFrame([{
             "Name": r["Name"].strip('.pdf'), 
             "Score" : r["Score"],
-            "Label" : r["Label"]
+            "Label" : r["Label"],
+            "Text" : r["Text"]
         } for r in st.session_state.results])
 
     else:
@@ -50,10 +54,6 @@ if submitted:
 #Sort by score
 
 if "df" in st.session_state and not st.session_state.df.empty:
-    # Displaying in dataset
-    st.write("### Resume Match results")
-    st.dataframe(st.session_state.df)
-
     sorted_results = sorted(st.session_state.results, key = lambda x: x["Score"], reverse=True)
 
     for result in sorted_results:
@@ -69,7 +69,23 @@ if "df" in st.session_state and not st.session_state.df.empty:
     if st.button("Export results as CSV"):
         st.download_button("Download CSV", data=data_encoded, file_name="resume_scores.csv", mime="text/csv")
 
-
     #Bar Chart
     st.write("### Score Visualization.")
     st.bar_chart(st.session_state.df.set_index('Name')['Score'])
+
+#Now the Ollama deepseek use
+#Sort the results by score 
+top_results = sorted(st.session_state.results, key=lambda x: x["Score"], reverse=True)[:5]
+
+#For each, generate explanation
+for res in top_results:
+    resume_text = res["Text"]
+    prompt = generate_explanation_prompt(st.session_state.jd_text, resume_text)
+    explanation = get_explanation_from_ollama(prompt)
+    res["explanation"] = explanation
+
+    if "explanation" in res and "⚠️" not in res["explanation"]:
+        st.markdown("**Explanation:**")
+        st.markdown(result["explanation"])
+    else:
+        st.warning("Explanation could not be generated.")
