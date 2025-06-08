@@ -1,45 +1,71 @@
-# 🤖 JobLevelling — AI-Powered Resume Matcher & Explainer
+# Resumaid – B2C MVP 🎓
 
-**“Smarter hiring. Stronger resumes. Now with reasons.”**
+> *“Is your resume job-ready? Find out in 30 seconds — with AI.”*
 
-Job Leveling is a local-first, privacy-friendly resume screening app that ranks resumes against job descriptions using **semantic similarity** — then explains **why** each resume scored the way it did.
+Resumaid helps job seekers and students understand how well their resume matches a job description using AI-powered feedback.
 
-🔍 Upload any job description and a batch of candidate resumes, and Job Leveling:
-- Scores each resume with a smart NLP model
-- Picks the top candidates
-- Asks a local LLM (DeepSeek via [Ollama](https://ollama.com)) to **explain the match**  
-  > "This candidate matches due to Python, Flask, AWS; missing Docker and CI/CD."
-
-This is resume screening — *with actual insight*.
+This version is built for **students and early-career professionals** who want fast, actionable resume scoring — no downloads, no setup, no recruiter gatekeeping.
 
 ---
 
-## 💡 Features
+## ✨ Features
 
-- 📎 **Bulk Resume Uploads** — drop in all your PDFs
-- 🧠 **AI-Powered Scoring** — SBERT + cosine similarity
-- 📊 **Ranked Results Table** — scores, labels, and PDF previews
-- 🧾 **Explainability Engine** — DeepSeek LLM explains *why* a resume matches
-- 📥 **CSV Download** — export all scores and labels
-- 🔒 **Local Only** — no API keys, no data leakage
-
----
-
-## 🛠 Tech Stack
-
-| Layer     | Tech                                 |
-|-----------|--------------------------------------|
-| Backend   | Python, Streamlit, Scikit-learn      |
-| NLP Model | `all-MiniLM-L6-v2` (Sentence Transformers) |
-| LLM       | `DeepSeek R1` via Ollama (local)     |
-| PDF Parse | pdfplumber                           |
-| Charts    | Matplotlib + Streamlit Charts        |
+- ✅ Upload your resume (PDF)
+- ✅ Paste a job description **or** select a preset template
+- ✅ Get a match score (0–100%)
+- ✅ See 3 strengths and 3 missing skills
+- ✅ Receive a one-line AI summary
+- ✅ Hosted on Streamlit Cloud
+- ✅ Uses OpenAI (GPT-3.5 or GPT-4) for fast, intelligent feedback
 
 ---
 
-## 🚀 How to Run It Locally
+## 🚀 Try It Now
 
-### 📦 1. Install Requirements
+> [🔗 Streamlit App Link](https://your-app-link.com)
+
+---
+
+## 🧠 How It Works
+
+1. You upload your resume (PDF only).
+2. Paste a job description or pick from our templates.
+3. We compare the two using semantic similarity + GPT.
+4. Get clear, readable feedback on how you match.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Streamlit
+- **AI Model:** OpenAI GPT-3.5-turbo or GPT-4
+- **NLP:** Sentence Transformers for scoring (optional)
+- **PDF Parsing:** pdfplumber
+
+---
+
+## 🔒 Privacy
+
+- Your resume is not saved.
+- Feedback is generated in real time and not stored.
+- This version uses OpenAI’s API — enterprise/offline version is under development.
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Add feedback history / save results
+- [ ] Customize resume tips based on user goals
+- [ ] Add “build your resume” AI tool
+- [ ] Deploy public SaaS beta
+
+---
+
+## 🧪 Dev Setup (Optional)
 
 ```bash
+git clone https://github.com/yourname/Resumaid.git
+cd Resumaid
+git checkout b2c-mvp
 pip install -r requirements.txt
+streamlit run app.py
