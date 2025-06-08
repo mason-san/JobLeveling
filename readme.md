@@ -1,5 +1,8 @@
 # 🤖 JobLevelling — AI-Powered Resume Matcher & Explainer
 
+> ⚠️ Looking for the student-facing version of Resumaid?  
+> Check out the [`b2c-mvp`](https://github.com/mason-san/JobLeveling/tree/b2c-mvp) branch for our OpenAI-powered resume matcher for job seekers.
+
 **“Smarter hiring. Stronger resumes. Now with reasons.”**
 
 Job Leveling is a local-first, privacy-friendly resume screening app that ranks resumes against job descriptions using **semantic similarity** — then explains **why** each resume scored the way it did.
