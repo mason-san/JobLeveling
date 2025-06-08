@@ -1,8 +1,8 @@
-# Resumaid – B2C MVP 🎓
+# JobLevling – B2C MVP 🎓
 
 > *“Is your resume job-ready? Find out in 30 seconds — with AI.”*
 
-Resumaid helps job seekers and students understand how well their resume matches a job description using AI-powered feedback.
+JobLeveling helps job seekers and students understand how well their resume matches a job description using AI-powered feedback.
 
 This version is built for **students and early-career professionals** who want fast, actionable resume scoring — no downloads, no setup, no recruiter gatekeeping.
 
@@ -64,8 +64,8 @@ This version is built for **students and early-career professionals** who want f
 ## 🧪 Dev Setup (Optional)
 
 ```bash
-git clone https://github.com/yourname/Resumaid.git
-cd Resumaid
+git clone https://github.com/yourname/JobLeveling.git
+cd JobLeveling 
 git checkout b2c-mvp
 pip install -r requirements.txt
 streamlit run app.py
