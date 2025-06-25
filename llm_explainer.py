@@ -16,8 +16,6 @@ def generate_explanation_prompt(job_desc, resume_text):
         {resume_text}
     """
 
-
-
 import requests
 
 def get_explanation_from_ollama(prompt, model="deepseek-r1:1.5b"):
