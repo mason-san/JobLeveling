@@ -1,10 +1,9 @@
-# JobLevling – B2C MVP 🎓
+# JobLevling
 
 > *“Is your resume job-ready? Find out in 30 seconds — with AI.”*
 
 JobLeveling helps job seekers and students understand how well their resume matches a job description using AI-powered feedback.
 
----
 
 ## ✨ Features
 
@@ -14,11 +13,6 @@ JobLeveling helps job seekers and students understand how well their resume matc
 - ✅ See 3 strengths and 3 missing skills
 - ✅ Receive a one-line AI summary
 - ✅ Hosted on Streamlit Cloud
----
-
-## 🚀 Try It Now
-> [🔗 Streamlit App Link](https://your-app-link.com)
----
 
 ## 🧠 How It Works
 
@@ -26,5 +20,3 @@ JobLeveling helps job seekers and students understand how well their resume matc
 2. Paste a job description or pick from our templates.
 3. We compare the two using semantic similarity + GPT.
 4. Get clear, readable feedback on how you match.
-
----
