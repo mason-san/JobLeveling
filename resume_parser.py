@@ -9,4 +9,3 @@ def extract_text_from_pdf(filename) -> str:
                 all_text += page_text + '\n'
 
     return all_text.strip()
-

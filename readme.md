@@ -4,7 +4,6 @@
 
 JobLeveling helps job seekers and students understand how well their resume matches a job description using AI-powered feedback.
 
-
 ## ✨ Features
 
 - ✅ Upload your resume (PDF)

@@ -17,5 +17,3 @@ def feedback(score):
         return "Decent Match"
     else: 
         return "Low Match not proper"
-    
-

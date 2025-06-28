@@ -79,8 +79,7 @@ if submitted:
 
         st.session_state.parsed_feedback = get_resume_feedback(resume_text, score, job_desc_submitted)
 
-        st.switch_page("pages/report.py")
-
+        st.switch_page("pages/reports_new.py")
 
     else:
         st.warning("Please provide job description and atleast one resume.")
@@ -88,4 +87,4 @@ if submitted:
 #Sidebar if submit was done before
 if st.session_state.clicked > 0:
     st.sidebar.page_link("app.py", label="Home")
-    st.sidebar.page_link("pages/report.py", label="Your Report")
+    st.sidebar.page_link("pages/reports_new.py", label="Your Report")

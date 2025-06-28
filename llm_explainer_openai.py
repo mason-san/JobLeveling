@@ -14,6 +14,8 @@ def get_resume_feedback(resume_text, score, job_description):
         Use the exact format below with numbered headings and bullet points (use - for bullets).
         Make sure to use the numbered headings exactly as shown, and do not add any additional text or explanations outside of these sections.
         Given the job description, a candidate resume, and a match score from a resume ranking model,
+        Make sure to not add any "*" or "•" in the output, only use "-".
+        Your task is to analyze the resume against the job description and the match score, and then
         perform the following three tasks:\n\n---\n\n
         
         1. My Advice\n\nWrite a helpful, specific summary
